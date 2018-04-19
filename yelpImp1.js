@@ -53,7 +53,7 @@ function doSearch(term, ofs){
             var yelp_link = b['url'];
             var result = {'name': name, 'image': image_link, 'type': type, 'tags': tags, 'address': address, 'yelp': yelp_link, 'description': ''};
             
-            //pushResult(result);
+            pushResult(result);
             //Send result to DB
           }
           if(parsedData['businesses'].length >= 50){
