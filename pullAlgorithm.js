@@ -1,4 +1,5 @@
-const THRESHOLD_VAL;
+const THRESHOLD_VAL = 0;
+const MAX_WEIGHT_BY_NUM_ACTIVITIES = 0;
 
 
 function getItems(userId){
@@ -9,9 +10,19 @@ function getItems(userId){
         
         var probArray;
 
+        updateUserTagWeights(user, probArray);
+
         populateWeights(user, probArray);
 
     });
+}
+
+updateUserTagWeights(user, probArray){ //Populate an array with tag names based on user likes
+   for(var i=0; i<user.tagLikes.length;i++){
+        for(var j=0;j<user.tagLikes[i].amount){
+            probArray.push(user.tagLikes[i].tag);
+        }
+   } 
 }
 
 function getRandomArbitrary(min, max) {
@@ -22,13 +33,13 @@ function populateWeights(user, probArray){ //Populate an array with tag names ba
     Tags.find({},function(err, tags){
             for(var i=0; i<tags.length; i++){
                 if(tags[i].weight>=THRESHOLD_VAL){
-                    if(tags[i]weight<15){
+                    if(tags[i]weight<MAX_WEIGHT_BY_NUM_ACTIVITIES){
                         for(var j=0; j<tags[i].weight; j++){
                             probArray.push(tags[i]);
                         }
                     }
                     else{
-                        for(var j=0; j<15; j++){
+                        for(var j=0; j<MAX_WEIGHT_BY_NUM_ACTIVITIES; j++){
                             probArray.push(tags[i]);
                         }
                     }
